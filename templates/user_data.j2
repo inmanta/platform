@@ -27,6 +27,7 @@ enabled_metadata=1
 EOF
 {% endif %}
 
+yum install -y epel-release
 yum install -y python3-devel gcc git python3-inmanta-agent
 
 cat > /etc/inmanta/agent.cfg <<EOF

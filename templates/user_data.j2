@@ -32,6 +32,7 @@ yum install -y python34-devel gcc git python3-inmanta-agent
 
 cat > /etc/inmanta/agent.cfg <<EOF
 [config]
+agent_splay=10
 heartbeat-interval = 60
 fact-expire = 60
 state-dir=/var/lib/inmanta

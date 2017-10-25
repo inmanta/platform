@@ -25,7 +25,6 @@ entity UserdataVM:
         :attr name: The name of the vm or host
     """
     string user_data
-    string name
 end
 
 entity UserdataBootstrap:
@@ -33,17 +32,17 @@ entity UserdataBootstrap:
         Bootstrap an inmanta agent on the host by passing a shell script to the virtual machine user data.
         Setting the INMANTA_RELEASE environment variable to dev will install the agent from development snapshots.
 
-        The user script will force the correct hostname and setenforce 0 to disable enforcing selinux. 
-        
+        The user script will force the correct hostname and setenforce 0 to disable enforcing selinux.
+
         .. warning:: Currently this script only support centos 7 or equivalent (rhel7, aws linux, sl7, ...).
     """
 end
 
 implementation userdataBootstrap for UserdataBootstrap:
-    env_name = std::environment_name()                                                               
-    env_id = std::environment()                                                                      
-    env_server = std::environment_server()                                                           
-    port = std::server_port()                                                                        
+    env_name = std::environment_name()
+    env_id = std::environment()
+    env_server = std::environment_server()
+    port = std::server_port()
     branch = std::get_env("INMANTA_RELEASE", "stable")
 
     self.vm.user_data = std::template("platform/user_data.j2")

@@ -43,7 +43,9 @@ implementation userdataBootstrap for UserdataBootstrap:
     env_id = std::environment()
     env_server = std::environment_server()
     port = std::server_port()
-    branch = std::get_env("INMANTA_RELEASE", "stable")
+    release = std::get_env("INMANTA_RELEASE", "stable")
+    ssl_ca = std::server_ca()
+    token = std::server_token()
 
     self.vm.user_data = std::template("platform/user_data.j2")
 end

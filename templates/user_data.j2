@@ -77,6 +77,43 @@ EOF
     systemctl enable inmanta-agent
 }
 
+function install_fedora() {
+    hostnamectl set-hostname {{ vm.name }}
+    setenforce 0
+
+    # Install inmanta release {{release}}
+    {% if release == "dev" %}
+    cat > /etc/yum.repos.d/inmanta_oss_dev.repo <<EOF
+[inmanta-oss-dev]
+name=Inmanta OSS Dev snapshots
+baseurl=https://pkg.inmanta.com/inmanta-oss-dev/f\$releasever/
+gpgcheck=1
+gpgkey=https://pkg.inmanta.com/inmanta-oss-dev/inmanta-oss-dev-public-key
+repo_gpgcheck=1
+enabled=1
+enabled_metadata=1
+EOF
+    {% else %}
+    cat > /etc/yum.repos.d/inmanta_oss_stable.repo <<EOF
+[inmanta-oss-stable]
+name=Inmanta OSS stable
+baseurl=https://pkg.inmanta.com/inmanta-oss-stable/f\$releasever/
+gpgcheck=1
+gpgkey=https://pkg.inmanta.com/inmanta-oss-stable/inmanta-oss-stable-public-key
+repo_gpgcheck=1
+enabled=1
+enabled_metadata=1
+EOF
+    {% endif %}
+
+    yum install -y python3-devel gcc git python3-inmanta-agent
+
+    create_config
+
+    systemctl start inmanta-agent
+    systemctl enable inmanta-agent
+}
+
 function install_ubuntu() {
     hostname {{ vm.name }}
     echo {{ vm.name }} > /etc/hostname
@@ -122,6 +159,9 @@ then
 elif [[ "$ID" == "ubuntu" ]];
 then
     install_ubuntu
+elif [[ "$ID" == "fedora" ]];
+then
+    install_fedora
 else
     echo "$ID $VERSION_ID not supported"
 fi

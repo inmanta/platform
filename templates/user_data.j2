@@ -126,7 +126,7 @@ function install_ubuntu() {
     /opt/inmanta/bin/pip3 install -U pip
     /opt/inmanta/bin/pip3 install -U setuptools
     # Install inmanta release {{release}}
-    {% if release == "master" -%}
+    {% if release == "dev" -%}
     /opt/inmanta/bin/pip3 install git+https://github.com/inmanta/inmanta#egg=inmanta
     {% else -%}
     /opt/inmanta/bin/pip3 install inmanta

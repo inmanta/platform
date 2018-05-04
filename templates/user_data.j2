@@ -129,9 +129,11 @@ function install_ubuntu() {
     /opt/inmanta/bin/pip3 install -U setuptools
     # Install inmanta release {{release}}
     {% if release == "dev" -%}
-    /opt/inmanta/bin/pip3 install git+https://github.com/inmanta/inmanta#egg=inmanta
+    curl -o /tmp/requirements.txt https://raw.githubusercontent.com/inmanta/inmanta/master/requirements.txt
+    /opt/inmanta/bin/pip3 install -c /tmp/requirements.txt git+https://github.com/inmanta/inmanta#egg=inmanta
     {% else -%}
-    /opt/inmanta/bin/pip3 install inmanta
+    curl -o /tmp/requirements.txt https://raw.githubusercontent.com/inmanta/inmanta/stable/2018.1/requirements.txt
+    /opt/inmanta/bin/pip3 install -c /tmp/requirements.txt inmanta
     {% endif %}
 
     mkdir -p /etc/inmanta

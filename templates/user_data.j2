@@ -121,9 +121,9 @@ function install_ubuntu() {
     echo {{ vm.name }} > /etc/hostname
 
     apt-get update
-    apt-get install -y python3 python3-pip git python-virtualenv libffi-dev
+    apt-get install -y python3.5-dev git python-virtualenv libffi-dev
 
-    virtualenv -p python3 /opt/inmanta
+    virtualenv -p python3.5 /opt/inmanta
 
     /opt/inmanta/bin/pip3 install -U pip
     /opt/inmanta/bin/pip3 install -U setuptools

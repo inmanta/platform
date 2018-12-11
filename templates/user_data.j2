@@ -125,10 +125,12 @@ function install_ubuntu() {
     
     add-apt-repository -y ppa:deadsnakes/ppa
     apt-get update
-    apt-get install -y python3.5 libffi-dev python3.5-venv
+    apt-get install -y python3.5 libffi-dev python3.5-venv git
 
-    python3.5 -m venv  /opt/inmanta
+    python3.5 -m venv /opt/inmanta
 
+    /opt/inmanta/bin/pip3 install -U pip
+    /opt/inmanta/bin/pip3 install -U setuptools
     curl -o /tmp/requirements.txt https://raw.githubusercontent.com/inmanta/inmanta/master/requirements.txt
     /opt/inmanta/bin/pip3 install -c /tmp/requirements.txt git+https://github.com/inmanta/inmanta#egg=inmanta
     {% else -%}

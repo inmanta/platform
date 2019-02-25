@@ -127,7 +127,7 @@ function install_ubuntu() {
     apt-get update
     apt-get install -y python3.6 libffi-dev python3.6-venv git
 
-    python3.5 -m venv /opt/inmanta
+    python3.6 -m venv /opt/inmanta
 
     /opt/inmanta/bin/pip3 install -U pip
     /opt/inmanta/bin/pip3 install -U setuptools

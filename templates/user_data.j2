@@ -16,7 +16,7 @@ function create_config() {
 EOF
     {% endif %}
 
-    cat > /etc/inmanta/agent.cfg <<EOF
+    cat > /etc/inmanta/inmanta.d/99-agent.cfg <<EOF
 [config]
 agent-repair-splay-time=10
 heartbeat-interval = 60
@@ -137,7 +137,7 @@ function install_ubuntu() {
     /opt/inmanta/bin/pip3 install -c /tmp/requirements.txt inmanta
     {% endif %}
 
-    mkdir -p /etc/inmanta
+    mkdir -p /etc/inmanta/inmanta.d
     create_config
 
     cat > /etc/init/inmanta.conf <<EOF
@@ -151,7 +151,7 @@ stop on runlevel [!2345]
 
 respawn
 
-exec /opt/inmanta/bin/inmanta -c /etc/inmanta/agent.cfg -vvv agent
+exec /opt/inmanta/bin/inmanta -vvv agent
 EOF
 
     initctl reload-configuration

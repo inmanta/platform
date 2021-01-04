@@ -70,6 +70,7 @@ enabled_metadata=1
 EOF
     {% endif %}
 
+    # epel-release is required in order to resolve the `openssl11` dependency
     yum install -y epel-release
     yum install -y python36-devel gcc git python3-inmanta-agent
 

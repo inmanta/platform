@@ -49,30 +49,40 @@ function install_el7() {
     {% if release == "dev" %}
     cat > /etc/yum.repos.d/inmanta_oss_dev.repo <<EOF
 [inmanta-oss-dev]
-name=Inmanta OSS Dev snapshots
-baseurl=https://pkg.inmanta.com/inmanta-oss-dev/el7/
-gpgcheck=1
-gpgkey=https://pkg.inmanta.com/inmanta-oss-dev/inmanta-oss-dev-public-key
+name=inmanta-oss-dev
+baseurl=https://packages.inmanta.com/public/oss-dev/rpm/el/7/$basearch
 repo_gpgcheck=1
 enabled=1
-enabled_metadata=1
+gpgkey=https://packages.inmanta.com/public/oss-dev/gpg.DCDF0896322A8B93.key
+gpgcheck=1
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+pkg_gpgcheck=1
+autorefresh=1
+type=rpm-md
 EOF
     {% else %}
     cat > /etc/yum.repos.d/inmanta_oss_stable.repo <<EOF
 [inmanta-oss-stable]
-name=Inmanta OSS stable
-baseurl=https://pkg.inmanta.com/inmanta-oss-stable/el7/
-gpgcheck=1
-gpgkey=https://pkg.inmanta.com/inmanta-oss-stable/inmanta-oss-stable-public-key
+name=inmanta-oss-stable
+baseurl=https://packages.inmanta.com/public/oss-stable/rpm/el/7/$basearch
 repo_gpgcheck=1
 enabled=1
-enabled_metadata=1
+gpgkey=https://packages.inmanta.com/public/oss-stable/gpg.A34DD0A274F07713.key
+gpgcheck=1
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+pkg_gpgcheck=1
+autorefresh=1
+type=rpm-md
 EOF
     {% endif %}
 
     # epel-release is required in order to resolve the `openssl11` dependency
     yum install -y epel-release
-    yum install -y python36-devel gcc git python3-inmanta-agent
+    yum install -y python36-devel gcc git inmanta-oss-agent
 
     create_config
 

@@ -50,7 +50,7 @@ function install_el7() {
     cat > /etc/yum.repos.d/inmanta-oss-dev.repo <<EOF
 [inmanta-oss-dev]
 name=inmanta-oss-dev
-baseurl=https://packages.inmanta.com/public/oss-dev/rpm/el/7/$basearch
+baseurl=https://packages.inmanta.com/public/oss-dev/rpm/el/7/\$basearch
 repo_gpgcheck=1
 enabled=1
 gpgkey=https://packages.inmanta.com/public/oss-dev/gpg.DCDF0896322A8B93.key
@@ -66,7 +66,7 @@ EOF
     cat > /etc/yum.repos.d/inmanta-oss-stable.repo <<EOF
 [inmanta-oss-stable]
 name=inmanta-oss-stable
-baseurl=https://packages.inmanta.com/public/oss-stable/rpm/el/7/$basearch
+baseurl=https://packages.inmanta.com/public/oss-stable/rpm/el/7/\$basearch
 repo_gpgcheck=1
 enabled=1
 gpgkey=https://packages.inmanta.com/public/oss-stable/gpg.A34DD0A274F07713.key

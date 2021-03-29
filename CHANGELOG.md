@@ -1,3 +1,6 @@
+#1.0.5
+- Fix escaping bug in .repo file
+
 #1.0.4
 - Get OSS RPMs from packages.inmanta.com
 

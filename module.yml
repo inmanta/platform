@@ -1,6 +1,6 @@
 name: platform
 license: ASL 2.0
-version: 1.0.4
+version: 1.0.5.dev1616998713
 compiler_version: 2019.1
 requires:
     - std>=0.21.0

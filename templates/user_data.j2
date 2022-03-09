@@ -41,7 +41,7 @@ ssl_ca_cert_file=/etc/inmanta/server.crt
 EOF
 }
 
-function install_el7() {
+function install_el() {
     hostnamectl set-hostname {{ vm.name }}
     setenforce 0
 
@@ -82,7 +82,7 @@ EOF
 
     # epel-release is required in order to resolve the `openssl11` dependency
     yum install -y epel-release
-    yum install -y python36-devel gcc git inmanta-oss-agent
+    yum install -y inmanta-oss-agent
 
     create_config
 
@@ -169,9 +169,9 @@ EOF
     start inmanta
 }
 
-if [[ "$ID" == "centos" && "$VERSION_ID" == "7" ]];
+if [[ "$ID" == "centos" ||  "$ID" == "rocky" ]];
 then
-    install_el7
+    install_el
 elif [[ "$ID" == "ubuntu" ]];
 then
     install_ubuntu

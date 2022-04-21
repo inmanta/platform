@@ -1,3 +1,6 @@
+# 1.1.3
+- Add pytest.ini file and set asyncio_mode to auto
+
 # 1.1.0
 - Add support for rocky linux
 

@@ -1,4 +1,9 @@
 # 1.1.4
+
+## v1.1.10 - ?
+
+
+
 - Remove pytest.ini and move its logic to pyproject.toml
 
 # 1.1.3
